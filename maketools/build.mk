@@ -7,13 +7,13 @@ $(LIBDIR)/lib$(PROJECT).a: $(LIB_OBJS) | $(LIBDIR)
 $(LIBDIR)/lib$(PROJECT).so: $(LIB_OBJS) | $(LIBDIR)
 	$(CC) $(ACTIVE_CFLAGS) -shared -o $@ $^ $(ACTIVE_LDFLAGS)
 
-ifneq ($(EXAMPLE_SRCS),)
-$(BINDIR)/%: examples/%.c $(TARGETS) | $(BINDIR)
-	$(CC) $(ACTIVE_CFLAGS) $< -o $@ -L$(LIBDIR) -l$(PROJECT) $(ACTIVE_LDFLAGS)
+ifneq ($(EXDIR),)
+$(BINDIR)/%: $(EXDIR)/%.c | $(BINDIR)
+	$(CC) $(ACTIVE_CFLAGS) $< -o $@ -L$(LIBDIR) $(ACTIVE_LDFLAGS)
 endif
 
 $(OBJDIR) $(LIBDIR) $(BINDIR):
 	mkdir -p $@
 
 clean:
-	rm -rf out
+	rm -rf $(OUTDIR)

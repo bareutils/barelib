@@ -16,8 +16,9 @@ CFLAGS_DEBUG   ?= -g3 -O0 -fsanitize=address,undefined -DDEBUG
 CFLAGS_RELEASE ?= -O2 -DNDEBUG
 ifeq ($(BUILD),debug)
     ACTIVE_CFLAGS += $(CFLAGS_DEBUG)
-    ACTIVE_LDFLAGS += -fsanitize=address,undefined
+    ACTIVE_LDFLAGS += -fsanitize=address,undefined $(EXTRA_LD)
 else
     ACTIVE_CFLAGS += $(CFLAGS_RELEASE)
+	ACTIVE_LDFLAGS += $(EXTRA_LD)
 endif
 ACTIVE_CFLAGS += $(CFLAGS)

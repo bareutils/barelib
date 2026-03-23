@@ -3,6 +3,8 @@ PROJECT_NAMESPACE := bare
 VERSION           := 0.0.0
 include maketools/config.mk
 CFLAGS += -Iinclude -DBARELIB_VERSION=\"$(VERSION)\"
+EXTRA_LD += -l$(PROJECT)
+EXDIR = examples
 LIB_SRCS      := $(wildcard src/*.c)
 LIB_OBJS      := $(patsubst src/%.c,$(OBJDIR)/%.o,$(LIB_SRCS))
 EXAMPLE_SRCS  := $(wildcard examples/*.c)
