@@ -28,5 +28,3 @@ debug release:
 include maketools/build.mk
 include maketools/install.mk
 include maketools/configure.mk
-install: install-lib install-bin
-uninstall: uninstall-lib uninstall-bin
