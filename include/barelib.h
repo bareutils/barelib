@@ -8,3 +8,4 @@
 #include "bare/io.h"
 #include "bare/mem.h"
 #include "bare/str.h"
+#include "bare/esc.h"
