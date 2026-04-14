@@ -18,7 +18,7 @@ install:
 	@for bin in $(BINARIES); do \
 		install -m 755 $$bin $(INSTBIN)/; \
 	done
-	cp -r $(OUTDIR)/etc $(INSTDIR)
+	cp -r $(OUTDIR)/etc $(DESTDIR)
 
 uninstall:
 	rm -f  $(INCDIR)/$(PROJECT).h
