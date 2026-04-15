@@ -1,19 +1,23 @@
 $(OBJDIR)/%.o: src/%.c | $(OBJDIR)
-	$(CC) $(ACTIVE_CFLAGS) $(FPIC) -c $< -o $@
+	@echo -e CC $(ECHO) $<
+	@$(CC) $(ACTIVE_CFLAGS) $(FPIC) -c $< -o $@
 
 $(LIBDIR)/lib$(PROJECT).a: $(LIB_OBJS) | $(LIBDIR)
-	$(AR) $(ARFLAGS) $@ $^
+	@$(AR) $(ARFLAGS) $@ $^
 
 $(LIBDIR)/lib$(PROJECT).so: $(LIB_OBJS) | $(LIBDIR)
-	$(CC) $(ACTIVE_CFLAGS) -shared -o $@ $^ $(ACTIVE_LDFLAGS)
+	@echo -e CC $(ECHO) $@
+	@$(CC) $(ACTIVE_CFLAGS) -shared -o $@ $^ $(ACTIVE_LDFLAGS)
 
 ifneq ($(EXDIR),)
 $(BINDIR)/%: $(EXDIR)/%.c | $(BINDIR)
-	$(CC) $(ACTIVE_CFLAGS) $< -o $@ -L$(LIBDIR) $(ACTIVE_LDFLAGS)
+	@echo -e CC $(ECHO) $<
+	@$(CC) $(ACTIVE_CFLAGS) $< -o $@ -L$(LIBDIR) $(ACTIVE_LDFLAGS)
 endif
 
 $(OBJDIR) $(LIBDIR) $(BINDIR):
-	mkdir -p $@
+	@mkdir -p $@
 
 clean:
-	rm -rf $(OUTDIR)
+	@echo -e CLEAN $(ECHO)
+	@rm -rf $(OUTDIR)

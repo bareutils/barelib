@@ -24,3 +24,8 @@ else
 	ACTIVE_LDFLAGS += $(EXTRA_LD)
 endif
 ACTIVE_CFLAGS += $(CFLAGS)
+ifndef ECHO
+HIT_TOTAL != ${MAKE} ${MAKECMDGOALS} --dry-run ECHO="HIT_MARK" | grep -c "HIT_MARK"
+HIT_COUNT = $(eval HIT_N != expr ${HIT_N} + 1)${HIT_N}
+ECHO = "[\033[1;32m`expr ${HIT_COUNT} '*' 100 / ${HIT_TOTAL}`%\033[1;0m]"
+endif
